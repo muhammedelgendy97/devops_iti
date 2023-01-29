@@ -23,7 +23,7 @@ pipeline {
                     sh 'docker build -t  mohamedelgendy/my-repo:java-maven-2 .'
                     sh "echo $PASS | docker login -u $USER --password-stdin"
                     sh 'docker push mohamedelgendy/my-repo:java-maven-2 '
-
+                    }
                 }
             }
         }
@@ -34,6 +34,5 @@ pipeline {
                 }
             }
         }
+        }
     }
-    }
-
