@@ -11,6 +11,7 @@ pipeline {
             steps {
                 script {
                   echo "building the application..."
+                  sh ' cd /var/lib/docker/volumes/jenkins_home/_data/workspace/my-pipeline '   
                   sh 'mvn package'
                 }
             }
