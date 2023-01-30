@@ -10,7 +10,8 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                  echo "building the application..."   
+                  echo "building the application..."
+                  sh ' mvn clean install spring-boot:repackage '
                   sh 'mvn package'
                 }
             }
