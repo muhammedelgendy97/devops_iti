@@ -5,13 +5,13 @@ def gv
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'mvn'
     }
     stages {
         stage("init") {
             steps {
                 script {
-                    gv = load "script.groovy"
+                    gv = load "script.groovy1"
                 }
             }
         }
