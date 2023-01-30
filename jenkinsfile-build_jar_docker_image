@@ -3,7 +3,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'mvn'
     }
     stages {
         
@@ -11,7 +11,6 @@ pipeline {
             steps {
                 script {
                   echo "building the application..."
-                  sh ' mvn clean install spring-boot:repackage '
                   sh 'mvn package'
                 }
             }
