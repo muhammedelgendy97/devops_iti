@@ -3,15 +3,14 @@
 pipeline {
     agent any
     tools {
-        maven 'maven3.8'
+        maven 'Maven'
     }
     stages {
         
         stage("build jar") {
             steps {
                 script {
-                  echo "building the application..."
-                  sh ' cd /var/lib/docker/volumes/jenkins_home/_data/workspace/my-pipeline '   
+                  echo "building the application..."   
                   sh 'mvn package'
                 }
             }
