@@ -1,0 +1,29 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent none
+    stages {
+        stage('build') {
+            steps {
+                script {
+                    buildFunc()
+                }
+            }
+        }
+        stage('test') {
+            steps {
+                script {
+                    testFunc()
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    deplyFunc()
+                }
+            }
+        }
+    }
+}
+
