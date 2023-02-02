@@ -18,7 +18,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage()
+                    buildImage('mohamedelgendy/my-repo:1.2')
                 }
             }
         }
