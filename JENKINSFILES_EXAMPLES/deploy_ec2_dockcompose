@@ -1,0 +1,35 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    stages {
+        stage('build jar') {
+            steps {
+                script {
+                    echo ' building jar '
+                }
+            }
+        }
+        stage('build image ') {
+      
+            steps {
+                script {
+                    echo 'building the image '
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    echo 'deploying to ec2 instance'
+                    def DockerComposeCmd = "docker-compose -f docker-compose.yaml up"
+                    sshagent(['ec2-server-key']) {
+                        sh "scp docker-compose.yaml ubuntu@100.25.170.135:/home/ubuntu"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@100.25.170.135 ${DockerComposeCmd}"
+                }
+                 
+                }
+            }
+        }
+    }
+}
