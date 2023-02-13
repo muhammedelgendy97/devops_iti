@@ -1,20 +1,28 @@
 #!/usr/bin/env groovy
 
+@Library('shared-library') _
+
 pipeline {
     agent any
+     tools {
+        maven 'mvn'
+    }
+    environment {
+        IMAGE_NAME='mohamedelgendy/my-repo:1.4'
+    }
     stages {
-        stage('build') {
+        stage('build jar') {
             steps {
                 script {
-                    echo "Building the application "
+                    buildJar()
                 }
             }
         }
-        stage('test') {
+        stage('build image ') {
       
             steps {
                 script {
-                    echo "Testing the application..."
+                    buildImage()
                 }
             }
         }
@@ -22,7 +30,7 @@ pipeline {
             steps {
                 script {
                     sshagent(['ec2-server-key']) {
-                        def dockerCmd= 'docker run -d -p 8081:8081 --name nexus sonatype/nexus3'
+                        def dockerCmd= "docker run -d ${IMAGE_NAME}"
                         sh "ssh -o StrictHostKeyChecking=no ubuntu@100.25.170.135 ${dockerCmd}"
                 }
                  
