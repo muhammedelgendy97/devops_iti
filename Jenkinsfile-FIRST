@@ -23,7 +23,7 @@ pipeline {
                 script {
                     sshagent(['ec2-server-key']) {
                         def dockerCmd= 'docker run -d -p 8081:8081 --name nexus sonatype/nexus3'
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@107.23.204.213 ${dockerCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@100.25.170.135 ${dockerCmd}"
                 }
                  
                 }
